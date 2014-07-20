@@ -66,10 +66,10 @@ public class ColoredPolygon {
 	public void writePath(OutputStream os) {
 
 		byte[] bytes = new byte[11];
-		bytes[0] = encodeUnsingedValueIntoByte(color.getA());
-		bytes[1] = encodeUnsingedValueIntoByte(color.getR());
-		bytes[2] = encodeUnsingedValueIntoByte(color.getG());
-		bytes[3] = encodeUnsingedValueIntoByte(color.getB());
+		bytes[0] = encodeUnsingedValueIntoByte(color.a);
+		bytes[1] = encodeUnsingedValueIntoByte(color.r);
+		bytes[2] = encodeUnsingedValueIntoByte(color.g);
+		bytes[3] = encodeUnsingedValueIntoByte(color.b);
 
 		bytes[4] = normalize(xpoints[0], 0, 800);
 		bytes[5] = normalize(ypoints[0], 0, 480);
@@ -121,8 +121,8 @@ public class ColoredPolygon {
 
 		originalStyle = "fill:" + color.getHTMLColor() + ";";
 
-		if (color.getA() != 255) {
-			originalStyle += "opacity: " + (color.getA() / 255.0f) + ";";
+		if (color.a != 255) {
+			originalStyle += "opacity: " + (color.a / 255.0f) + ";";
 		}
 	}
 
@@ -137,10 +137,10 @@ public class ColoredPolygon {
 
 			for (int c = 0; c < npoints; ++c) {
 
-				bytes[0] = encodeUnsingedValueIntoByte(color.getA());
-				bytes[1] = encodeUnsingedValueIntoByte(color.getR());
-				bytes[2] = encodeUnsingedValueIntoByte(color.getG());
-				bytes[3] = encodeUnsingedValueIntoByte(color.getB());
+				bytes[0] = encodeUnsingedValueIntoByte(color.a );
+				bytes[1] = encodeUnsingedValueIntoByte(color.r);
+				bytes[2] = encodeUnsingedValueIntoByte(color.g);
+				bytes[3] = encodeUnsingedValueIntoByte(color.b);
 
 				bytes[4] = normalize(xpoints[c % npoints], 0, 800);
 				bytes[5] = normalize(ypoints[c % npoints], 0, 480);

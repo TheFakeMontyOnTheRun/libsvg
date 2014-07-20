@@ -608,7 +608,7 @@ public class SVGUtils {
 			fill = attribute.substring(attribute.indexOf(":") + 1).trim();
 			fill = fill.substring(fill.indexOf('#') + 1).trim();
 			if (!fill.trim().equals("none")) {
-				color.setA((int) (255 * Float.parseFloat(fill)));
+				color.a = ((int) (255 * Float.parseFloat(fill)));
 			}
 		}
 		// }
