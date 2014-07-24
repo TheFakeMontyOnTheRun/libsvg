@@ -88,8 +88,8 @@ public class SVGGraphic {
 
 		Rect bound = makeBounds();
 
-		float newWidth = bound.x1;
-		float newHeight = bound.y1;
+		float newWidth = bound.p1.x;
+		float newHeight = bound.p1.y;
 
 		float scaleX = width / newWidth;
 		float scaleY = height / newHeight;
@@ -124,8 +124,8 @@ public class SVGGraphic {
 		float x, y;
 		Rect rect = new Rect();
 
-		rect.x0 = Integer.MAX_VALUE;
-		rect.y0 = Integer.MAX_VALUE;
+		rect.p0.x = Integer.MAX_VALUE;
+		rect.p0.y = Integer.MAX_VALUE;
 
 		for (ColoredPolygon cp : shapes) {
 			if (cp.xpoints != null && cp.ypoints != null) {
@@ -134,12 +134,12 @@ public class SVGGraphic {
 
 					x = aX + translate.x;
 
-					if (x < rect.x0) {
-						rect.x0 = x;
+					if (x < rect.p0.x) {
+						rect.p0.x = x;
 					}
 
-					if (x > rect.x1) {
-						rect.x1 = x;
+					if (x > rect.p1.x) {
+						rect.p1.x = x;
 					}
 				}
 
@@ -147,12 +147,12 @@ public class SVGGraphic {
 
 					y = aY + translate.y;
 
-					if (y < rect.y0) {
-						rect.y0 = y;
+					if (y < rect.p0.y) {
+						rect.p0.y = y;
 					}
 
-					if (y > rect.y1) {
-						rect.y1 = y;
+					if (y > rect.p1.y) {
+						rect.p1.y = y;
 					}
 				}
 			} else {
