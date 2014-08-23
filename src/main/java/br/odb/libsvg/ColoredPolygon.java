@@ -18,6 +18,7 @@ public class ColoredPolygon {
 	final private ArrayList<Vec2> points = new ArrayList<Vec2>();
 	final public ArrayList<Vec2> controlPoints = new ArrayList<Vec2>();
 	public String originalStyle;
+	public String gradient;
 	public float[] xpoints;
 	public float[] ypoints;
 	public int z = 0;
@@ -169,9 +170,9 @@ public class ColoredPolygon {
 
 		int range = Byte.MAX_VALUE - Byte.MIN_VALUE;
 
-		// f ������������������ primeiro normalizado, para depois ser
+		// f ������������������������������������������������������ primeiro normalizado, para depois ser
 		// transformado para uma
-		// nova base de espa������������������o vetorial
+		// nova base de espa������������������������������������������������������o vetorial
 		return encodeUnsingedValueIntoByte((int) ((f * range) / maximum));
 	}
 

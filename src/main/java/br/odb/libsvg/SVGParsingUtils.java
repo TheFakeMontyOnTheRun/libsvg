@@ -81,6 +81,7 @@ public final class SVGParsingUtils {
 		
 		public int index;
 		public String style;
+		public Color color;
 	}
 
 	public static void writeBinary(SVGGraphic processed, SVGGraphic original,
