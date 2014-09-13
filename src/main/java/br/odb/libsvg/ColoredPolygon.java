@@ -41,7 +41,7 @@ public class ColoredPolygon {
 
 		if (id != null) {
 
-			toReturn += "' Id='";
+			toReturn += "' id='";
 			toReturn += id;
 		}
 
