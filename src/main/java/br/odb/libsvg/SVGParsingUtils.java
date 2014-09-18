@@ -147,7 +147,7 @@ public final class SVGParsingUtils {
 			os = new FileOutputStream(pathOutput);
 			String head;
 			// TODO: change those page size values;
-			head = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg width='800' height='480'>\n<g>\n";
+			head = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg'>\n<g>\n";
 			os.write(head.getBytes());
 			for (int c = 0; c < pols.size(); ++c) {
 				pol = pols.get(c);
