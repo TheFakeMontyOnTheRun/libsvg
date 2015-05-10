@@ -1,5 +1,9 @@
 package br.odb.libsvg;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,6 +15,46 @@ public class SVGGraphic {
 
 	public ColoredPolygon[] shapes;
 	public HashMap<String, Gradient> gradients = new HashMap<String, Gradient>();
+	
+	
+	public static SVGGraphic fromBinary( String path ) {
+		SVGGraphic toReturn = new SVGGraphic();
+		
+		ArrayList<ColoredPolygon> pols = new ArrayList<>();
+		ColoredPolygon pol;
+		int size;
+		
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream( path );
+			DataInputStream dis = new DataInputStream( fis );
+			
+			size = dis.readInt();
+			
+			for (int c = 0; c < size; ++c) {
+				pol = new ColoredPolygon();
+				pol.readEdges( fis );
+				
+				if ( pol.npoints == 0 ) {
+					continue;
+				}
+					
+				pol.id = "shape" + c;
+				
+				pols.add( pol );
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		toReturn.fromArrayList( pols );
+		
+		return toReturn;
+	}
 
 	public SVGGraphic(ColoredPolygon[] shapes) {
 		this.shapes = shapes;

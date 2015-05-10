@@ -1,6 +1,8 @@
 package br.odb.libsvg;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -127,6 +129,43 @@ public class ColoredPolygon {
 		}
 	}
 
+	public void readEdges( FileInputStream is ) {
+		DataInputStream dis = new DataInputStream( is );
+		byte[] bytes = new byte[9]; 
+
+		try {
+
+			npoints = dis.readInt();
+
+                        xpoints = new float[ npoints ];
+                        ypoints = new float[ npoints ];
+                        
+			for (int c = 0; c < npoints; ++c) {
+				
+				dis.read(bytes);
+
+				color.a = decodeUnsingedValueIntoByte( bytes[ 0 ] );
+				color.r = decodeUnsingedValueIntoByte( bytes[ 1 ] );
+				color.g = decodeUnsingedValueIntoByte( bytes[ 2 ] );
+				color.b = decodeUnsingedValueIntoByte( bytes[ 3 ] );
+				
+                                
+                                
+                                xpoints[(c ) % npoints] = normalize( bytes[4], 0, 800); 
+				ypoints[(c ) % npoints] = normalize( bytes[5], 0, 800);
+                                
+                                controlPoints.add( new Vec2( xpoints[(c ) % npoints], ypoints[(c ) % npoints] ) );
+
+                                xpoints[(c + 1) % npoints] = normalize( bytes[6], 0, 800); 
+				ypoints[(c + 1) % npoints] = normalize( bytes[7], 0, 800);
+				z = decodeUnsingedValueIntoByte( bytes[8] );
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 	public void writeEdges(FileOutputStream os) {
 
 		byte[] bytes = new byte[9];
@@ -159,6 +198,12 @@ public class ColoredPolygon {
 		}
 	}
 
+	private byte decodeUnsingedValueIntoByte(int uv) {
+
+		return (byte) (uv + Byte.MIN_VALUE);
+	}
+	
+	
 	private byte encodeUnsingedValueIntoByte(int uv) {
 
 		return (byte) (uv - Byte.MIN_VALUE);
