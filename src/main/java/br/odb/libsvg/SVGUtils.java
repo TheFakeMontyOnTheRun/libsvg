@@ -2,8 +2,8 @@ package br.odb.libsvg;
 
 import java.util.ArrayList;
 
-import br.odb.utils.Color;
-import br.odb.utils.math.Vec2;
+import br.odb.gameutils.Color;
+import br.odb.gameutils.math.Vec2;
 
 /**
  * 

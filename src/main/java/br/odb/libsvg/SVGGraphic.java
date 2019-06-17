@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import br.odb.libsvg.SVGParsingUtils.Gradient;
-import br.odb.utils.Rect;
-import br.odb.utils.math.Vec2;
+import br.odb.gameutils.Rect;
+import br.odb.gameutils.math.Vec2;
 
 public class SVGGraphic {
 
